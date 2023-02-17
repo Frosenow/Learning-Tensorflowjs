@@ -42,17 +42,40 @@ function mousePressed(){
 }
 
 function draw(){
-    
-    y_tensor = tf.tensor1d(y_cords);
-    optimizer.minimize(() => loss(predict(x_cords), y_tensor))
-
     background(0)
     stroke(255)
     strokeWeight(10)
 
+    // Maping values of pixels to draw it in scale 
     for(let i = 0; i < x_cords.length; i++){
         let px = map(x_cords[i], 0, 1, 0, width)
         let py = map(y_cords[i], 0, 1, height, 0)
         point(px, py)
     }
+
+    // No trainable list provided so it optimise all trainable variable (a and b)
+    // Optimizing loss function to get as small error as possible 
+    if(x_cords.length > 0){
+        y_tensor = tf.tensor1d(y_cords);
+        optimizer.minimize(() => loss(predict(x_cords), y_tensor))
+    }
+    
+    // Get y values of x's in: (0, y) and (1, y)
+    const lineX = [0, 1]
+    const ys = predict(lineX)
+
+    // Remaping x & y cordinates to draw linear function 
+    let x1 = map(lineX[0], 0, 1, 0, width)
+    let x2 = map(lineX[1], 0, 1, 0, width)
+
+    // Getting scalar values back, because they are tensors
+    lineY = ys.dataSync()
+
+    let y1 = map(lineY[0], 0, 1, height, 0)
+    let y2 = map(lineY[1], 0, 1, height, 0)
+
+    strokeWeight(2)
+    line(x1, y1, x2, y2)
+
+    console.log(tf.memory().numTensors)
 }
