@@ -53,27 +53,38 @@ function draw(){
         point(px, py)
     }
 
-    // No trainable list provided so it optimise all trainable variable (a and b)
-    // Optimizing loss function to get as small error as possible 
-    if(x_cords.length > 0){
-        y_tensor = tf.tensor1d(y_cords);
-        optimizer.minimize(() => loss(predict(x_cords), y_tensor))
-    }
+    // Clear all unused tensors
+    tf.tidy(() => {
+        // No trainable list provided so it optimise all trainable variable (a and b)
+        // Optimizing loss function to get as small error as possible 
+        if(x_cords.length > 0){
+            y_tensor = tf.tensor1d(y_cords);
+            const lossValue = optimizer.minimize(() => loss(predict(x_cords), y_tensor))
+            console.log(lossValue)
+        }
+    });
     
     // Get y values of x's in: (0, y) and (1, y)
     const lineX = [0, 1]
-    const ys = predict(lineX)
+    
+    // Clear all unused tensors
+    const ys = tf.tidy(() => predict(lineX))
 
-    // Remaping x & y cordinates to draw linear function 
+    // Remaping x cordinates to draw linear function 
     let x1 = map(lineX[0], 0, 1, 0, width)
     let x2 = map(lineX[1], 0, 1, 0, width)
 
     // Getting scalar values back, because they are tensors
     lineY = ys.dataSync()
 
+    // Clean unused tensor 
+    ys.dispose()
+
+    // Remaping y cordinates to draw linear function 
     let y1 = map(lineY[0], 0, 1, height, 0)
     let y2 = map(lineY[1], 0, 1, height, 0)
-
+    
+    // Drawing linear function
     strokeWeight(2)
     line(x1, y1, x2, y2)
 
