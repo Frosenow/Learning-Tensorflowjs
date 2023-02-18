@@ -14,7 +14,10 @@ let chart;
 
 
 function setup(){
-    createCanvas(500, 500);
+    let cnv = createCanvas(500, 500);
+    cnv.parent("canvas-container")
+    
+
     // Setting function parameters in random place at first
     // Define slope of y = ax + b
     a = tf.scalar(Math.random()).variable()
@@ -34,7 +37,7 @@ function setup(){
         options: {
           backgroundColor: 'rgba(250, 237, 205, 1.0)',
           borderColor: 'rgba(212, 163, 115, 1.0)',
-          // maintainAspectRatio: true, 
+          maintainAspectRatio: true, 
           responsive: true, 
           plugins: {
             title: {
@@ -79,6 +82,8 @@ function setup(){
           },
         }
       });
+      chart.canvas.parentNode.style.height = '30rem';
+      chart.canvas.parentNode.style.width = '40rem';
 }
 
 // Predicts y values to measure the mean square error 

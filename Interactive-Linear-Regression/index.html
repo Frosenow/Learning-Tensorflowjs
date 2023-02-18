@@ -12,8 +12,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
-      </div>
+    <div class="container">
+        <section id="canvas-container">
+            <div class="description">
+                <p><a href="https://www.ibm.com/topics/linear-regression#:~:text=Resources-,What%20is%20linear%20regression%3F,is%20called%20the%20independent%20variable."><span class="bold">Linear regression</span></a> is a statistical technique used to model the relationship between two continuous variables. In simple linear regression, there is one independent variable (also called the predictor or explanatory variable) and one dependent variable (also called the response variable). The goal is to find the line that best fits the data points, which can be used to make predictions about the dependent variable for a given value of the independent variable.</p>
+                <p>This code implements an interactive linear regression model using the <a href="https://p5js.org/"><span class="bold">p5.js</span></a> and <a href="https://www.tensorflow.org/js/"><span class="bold">Tensorflow.js</span></a> libraries.</p>
+                <span class="bold click-cnv">Click on the canvas to see how it works! &#10024</span>
+            </div>
+        </section>
+        <section id="chart-container">
+            <div id="chart-wrapepr">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="description">
+                <p>The code also includes a chart using the <a href="https://www.chartjs.org/"><span class="bold">Chart.js</span></a> library to visualize the value of the loss function over time. This chart is updated each time a new data point is added.
+
+                Overall, this code provides a simple and interactive demonstration of how machine learning models can be built and visualized using web-based technologies like <a href="https://p5js.org/"><span class="bold">p5.js</span></a> and <a href="https://www.tensorflow.org/js/"><span class="bold">Tensorflow.js</span></a></p>
+            </div>
+        </section>
+    </div>  
 </body>
 </html>
