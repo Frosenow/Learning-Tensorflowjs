@@ -9,14 +9,42 @@ let y_cords = [];
 const learningRate = 0.5; 
 const optimizer = tf.train.sgd(learningRate)
 
+let fittings = 0; 
+let chart; 
+
 
 function setup(){
-    createCanvas(500, 500); 
+    createCanvas(500, 500);
     // Setting function parameters in random place at first
     // Define slope of y = ax + b
     a = tf.scalar(Math.random()).variable()
     // Define y-intercept of y = ax + b 
     b = tf.scalar(Math.random()).variable()
+
+    chart = new Chart(document.getElementById('myChart'), {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Test Label', 
+            data: [],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true, 
+          scales: {
+            x: {
+              beginAtZero: true, 
+              display: true 
+            },
+            y: {
+              display: true, 
+              beginAtZero: true
+            }
+          }
+        }
+      });
 }
 
 // Predicts y values to measure the mean square error 
@@ -34,18 +62,33 @@ function loss(pred, labels){
 
 // Creating dataset interactively 
 function mousePressed(){
-    let x = map(mouseX, 0, width, 0, 1);
-    let y = map(mouseY, 0, height, 1, 0);
+    let mouseXCords = mouseX; 
+    let mouseYCords = mouseY; 
+    
+    // Prevent from clickig and adding points over canvas
+    if(!(mouseXCords > width || mouseXCords < 0 || mouseYCords > height || mouseYCords < 0)){
+        let x = map(mouseX, 0, width, 0, 1);
+        let y = map(mouseY, 0, height, 1, 0);
+    
+        x_cords.push(x); 
+        y_cords.push(y);
+        fittings++; 
 
-    x_cords.push(x); 
-    y_cords.push(y)
+        y_tensor = tf.tensor1d(y_cords);
+        let lossValues = loss(predict(x_cords), y_tensor)
+        lossValues.data().then(lossData => {
+          chart.data.datasets[0].data.push(lossData[0]) 
+          chart.data.labels.push(fittings)
+          chart.update();
+        })
+      console.log(chart.data)
+    }
 }
 
 function draw(){
     background(0)
     stroke(255)
     strokeWeight(10)
-
     // Maping values of pixels to draw it in scale 
     for(let i = 0; i < x_cords.length; i++){
         let px = map(x_cords[i], 0, 1, 0, width)
@@ -59,11 +102,10 @@ function draw(){
         // Optimizing loss function to get as small error as possible 
         if(x_cords.length > 0){
             y_tensor = tf.tensor1d(y_cords);
-            const lossValue = optimizer.minimize(() => loss(predict(x_cords), y_tensor))
-            console.log(lossValue)
+            optimizer.minimize(() => loss(predict(x_cords), y_tensor))
         }
     });
-    
+
     // Get y values of x's in: (0, y) and (1, y)
     const lineX = [0, 1]
     
@@ -86,7 +128,5 @@ function draw(){
     
     // Drawing linear function
     strokeWeight(2)
-    line(x1, y1, x2, y2)
-
-    console.log(tf.memory().numTensors)
+    line(x1, y1, x2, y2)  
 }
