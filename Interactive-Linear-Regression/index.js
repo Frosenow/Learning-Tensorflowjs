@@ -26,23 +26,57 @@ function setup(){
         data: {
           labels: [],
           datasets: [{
-            label: 'Test Label', 
+            label: 'Loss Function Error', 
             data: [],
-            borderWidth: 1
+            borderWidth: 1,
           }]
         },
         options: {
+          backgroundColor: 'rgba(250, 237, 205, 1.0)',
+          borderColor: 'rgba(212, 163, 115, 1.0)',
+          // maintainAspectRatio: true, 
           responsive: true, 
+          plugins: {
+            title: {
+              display: true,
+              align: 'center',
+              text: 'Value of the loss function in the following iterations',
+              padding: {
+                top: 10,
+                bottom: 20,
+              },
+            },
+            legend: {
+              display: false,
+                position: 'bottom',
+             }
+            },
           scales: {
             x: {
               beginAtZero: true, 
-              display: true 
+              display: true,
+              title: {
+                display: true, 
+                text: 'Iteration'
+              },
             },
             y: {
               display: true, 
-              beginAtZero: true
+              beginAtZero: true,
+              title: {
+                display: true, 
+                text: 'Loss Function Value'
+              },
+            },
+          },
+          animations: {
+            tension: {
+              duartion: 1000, 
+              easing: 'linear',
+              from: 1, 
+              to: 0, 
             }
-          }
+          },
         }
       });
 }
@@ -86,7 +120,7 @@ function mousePressed(){
 }
 
 function draw(){
-    background(0)
+    background(233, 237, 201)
     stroke(255)
     strokeWeight(10)
     // Maping values of pixels to draw it in scale 

@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    background: rgba(254, 250, 224, 1);
+}
+
+body > *{
+    padding-top: 2rem; 
+}
+
+#defaultCanvas0, #myChart {
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#myChart {
+    min-width: 200px; 
+    min-height: 300px;
+}
