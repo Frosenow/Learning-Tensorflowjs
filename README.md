@@ -8,13 +8,13 @@ This project demonstrates interactive linear regression using TensorFlow.js and 
 # Getting Started 
 To run this project, you can either clone the repository or download the files as a ZIP archive.
 
-## Prerequisites
+### Prerequisites
 You need a web browser with JavaScript support to run this project.
 
-## Installing
+### Installing
 No installation is required. Simply open the index.html file in a web browser to run the project.
 
-## How It's Made:
+# How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Tensorflow.js, p5.js, Chart.js
 
