@@ -3,7 +3,7 @@ This project demonstrates interactive linear regression using TensorFlow.js and 
 
 **Link to project:** [Interactive Linear Regression using Tensorflow.js](https://extraordinary-biscuit-07f851.netlify.app/)
 
-![Mockup of the site](./images/mockup.jpg)
+![Mockup of the site](./Interactive-Linear-Regression/images/mockup.jpg)
 
 # Getting Started 
 To run this project, you can either clone the repository or download the files as a ZIP archive.
