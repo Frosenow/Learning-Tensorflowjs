@@ -1,7 +1,7 @@
 #  Interactive Linear Regression using Tensorflow.js
 This project demonstrates interactive linear regression using TensorFlow.js and p5.js. The project creates a canvas and allows the user to add data points interactively. The program then uses these data points to train a linear regression model that predicts the output variable (y) from the input variable (x). The program also visualizes the loss function in real-time using a line chart.
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** [Interactive Linear Regression using Tensorflow.js](https://extraordinary-biscuit-07f851.netlify.app/)
 
 ![Mockup of the site](./images/mockup.jpg)
 
