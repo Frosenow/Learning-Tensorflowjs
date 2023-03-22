@@ -29,7 +29,7 @@ Visualization is a powerful tool for understanding data and models. In this proj
 ## Examples:
 Take a look at these couple examples that I have in my own portfolio:
 
-**Locatobia - Guide for busy turists:** https://github.com/Frosenow/Locatobia
+**Locatobia - Guide for busy tourists:** https://github.com/Frosenow/Locatobia
 
 **Image Processing in Python using CUDA with Numba:** https://github.com/Frosenow/Numba-GPU-Image-Processing
 
